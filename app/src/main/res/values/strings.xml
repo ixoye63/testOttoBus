@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">testOttoBus</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="tab_name_home">홈</string>
+    <string name="tab_name_store">상점</string>
+    <string name="tab_name_coupon">쿠폰</string>
+    <string name="tab_name_more">더보기</string>
+</resources>
