@@ -1,25 +1,19 @@
 package com.tongtong.testottobus.fragments;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.tongtong.testottobus.BusProvider;
-import com.tongtong.testottobus.EventBusCallTest;
+import com.tongtong.testottobus.TestEvent1;
+import com.tongtong.testottobus.TestEvent2;
 import com.tongtong.testottobus.R;
 import com.tongtong.tonglib.util.LogUtil;
 import com.tongtong.tonglib.util.Util;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 
 public class ThreeFragment extends Fragment {
@@ -30,6 +24,8 @@ public class ThreeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup cotainer, Bundle savedInstanceState) {
+        LogUtil.d("");
+
         View view = inflater.inflate(R.layout.fragment_three, cotainer, false);
 
         mTv = (TextView) view.findViewById(R.id.progressingText);
@@ -44,28 +40,40 @@ public class ThreeFragment extends Fragment {
                 mPlusNum ++ ;
                 LogUtil.d("[Three Fragment] num : %d", mPlusNum);
                 mTv.setText(Util.sprintf("[Three Fragment] num : %d", mPlusNum));
-                EventBus.getDefault().post(new EventBusCallTest(mPlusNum));
-
+                // BusProvider.getInstance().post(Util.sprintf("%s %d", "Two Fragment", mPlusNum));
+                BusProvider.getInstance().post(new TestEvent1(Util.sprintf("%s %d", "Three Fragment", mPlusNum)));
+                // BusProvider.getInstance().post(new TestEvent2("Three Fragment", mPlusNum));
             }
         });
 
         return view;
     }
 
-    @Subscribe
-    public void onEventMainThread(EventBusCallTest event){
-
-    }
-
     @Override
     public void onStart() {
-        EventBus.getDefault().register(this);
+        LogUtil.d("");
+
         super.onStart();
     }
 
     @Override
     public void onStop() {
-        EventBus.getDefault().unregister(this);
+        LogUtil.d("");
+
         super.onStop();
+    }
+
+    @Override
+    public void onResume() {
+        LogUtil.d("");
+
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        LogUtil.d("");
+
+        super.onPause();
     }
 }
